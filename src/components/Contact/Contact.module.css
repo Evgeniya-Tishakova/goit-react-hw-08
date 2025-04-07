@@ -1,0 +1,46 @@
+.contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background-color: plum;
+    width: 100%;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.contact:hover {
+    background-color: pink;
+    transform: scale(1.02);
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+
+.button {
+    padding: 4px 10px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.button:hover {
+    background-color: #007bff;
+    transform: scale(1.05);
+}

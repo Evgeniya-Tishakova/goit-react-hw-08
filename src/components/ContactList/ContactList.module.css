@@ -1,0 +1,15 @@
+.list {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.item {
+    flex: 1 1 calc(33.333% - 10px);
+    /* По 3 контакта в ряд */
+    max-width: 250px;
+    min-width: 200px;
+
+}
