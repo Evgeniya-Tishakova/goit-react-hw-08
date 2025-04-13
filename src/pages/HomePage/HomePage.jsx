@@ -1,6 +1,6 @@
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white p-6 md:p-10">
+    <div className="min-h-screen m-auto from-slate-900 to-slate-800 text-white p-6 md:p-10">
       <div className="max-w-3xl mx-auto bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-8 space-y-8">
         <h1 className="text-4xl font-bold text-cyan-400 text-center drop-shadow">
           My Contacts App

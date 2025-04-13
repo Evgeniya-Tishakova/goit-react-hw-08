@@ -2,7 +2,7 @@ import RegistrationForm from "../../components/RegistrationForm/RegistrationForm
 
 export default function RegistrationPage() {
   return (
-    <div>
+    <div className="m-auto">
       <RegistrationForm />
     </div>
   );

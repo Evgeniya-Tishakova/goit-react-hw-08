@@ -42,7 +42,7 @@ export default function Contact({ id, name, number }) {
 
   return (
     <>
-      <div className="flex flex-col flex-row md:items-center justify-between gap-4 bg-slate-700 p-4 rounded-lg shadow">
+      <div className="flex flex-col flex-row md:items-center justify-between gap-4 bg-slate-700 p-4 rounded-lg shadow h-full">
         {!showEdit && (
           <div className="grid grid-cols-4 gap-1">
             <div class="col-span-3">
@@ -106,7 +106,7 @@ export default function Contact({ id, name, number }) {
               validationSchema={UserSchema}
             >
               {() => (
-                <Form className="grid grid-cols-4 gap-1 w-full">
+                <Form className="grid grid-cols-4 gap-1 w-full h-full">
                   <div class="col-span-3">
                     {/* Name Field */}
                     <div className="flex items-center gap-2 text-base">
