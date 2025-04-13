@@ -1,6 +1,11 @@
-import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { fetchContacts, addContact, deleteContact } from "./contactsOps";
-import { selectNameFilter } from "./filtersSlice";
+import { createSlice } from "@reduxjs/toolkit";
+import {
+  fetchContacts,
+  addContact,
+  deleteContact,
+} from "../contacts/operations";
+import { logOut } from "../auth/operations";
+import { toast } from "react-hot-toast";
 
 const handlePending = (state) => {
   state.loading = true;
@@ -34,6 +39,7 @@ const ContactsSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.items.push(action.payload);
+        toast.success("Contact added successfully!");
       })
       .addCase(addContact.rejected, handleRejected)
       .addCase(deleteContact.pending, handlePending)
@@ -43,36 +49,13 @@ const ContactsSlice = createSlice({
         state.items = state.items.filter(
           (contact) => contact.id !== action.payload.id
         );
+        toast.success("Contact deleted!");
       })
-      .addCase(deleteContact.rejected, handleRejected);
+      .addCase(deleteContact.rejected, handleRejected)
+      .addCase(logOut.fulfilled, (state) => {
+        state.items = [];
+      });
   },
 });
 
 export default ContactsSlice.reducer;
-
-//!Selectors
-
-export const selectContacts = (state) => {
-  return state.contacts.items;
-};
-
-export const selectIsLoading = (state) => {
-  return state.contacts.loading;
-};
-
-export const selectIsError = (state) => {
-  return state.contacts.error;
-};
-
-//?мемоізований селектор
-
-export const selectFilteredContacts = createSelector(
-  [selectContacts, selectNameFilter],
-  (contacts, contactsFilter = "") => {
-    const normalizedFilter = contactsFilter.toLowerCase().trim();
-
-    return contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(normalizedFilter)
-    );
-  }
-);

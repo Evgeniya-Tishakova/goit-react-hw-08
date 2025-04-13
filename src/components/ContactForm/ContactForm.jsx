@@ -1,12 +1,11 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import css from "./ContactForm.module.css";
 import * as Yup from "yup";
 import { nanoid } from "nanoid";
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "../../redux/contactsOps";
-import { selectContacts } from "../../redux/contactsSlice";
+import { addContact } from "../../redux/contacts/operations";
+import { selectContacts } from "../../redux/contacts/selectors";
 
-const UserSchema = Yup.object().shape({
+export const UserSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Too Short!")
     .max(50, "Too Long!")
@@ -20,8 +19,6 @@ const UserSchema = Yup.object().shape({
 export default function ContactForm() {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-
-  const id = nanoid();
 
   const handleSubmit = (values, { resetForm }) => {
     const contact = {
@@ -39,25 +36,56 @@ export default function ContactForm() {
       onSubmit={handleSubmit}
       validationSchema={UserSchema}
     >
-      {({ handleSubmit, errors, touched }) => (
-        <Form className={css.form} onSubmit={handleSubmit}>
-          <div className={css.container}>
-            <label className={css.label}>Name</label>
-            <Field className={css.input} type="text" id={id} name="name" />
-            <ErrorMessage className={css.error} name="name" component="span" />
-          </div>
-          <div className={css.container}>
-            <label className={css.label}>Number</label>
-            <Field className={css.input} type="text" id={id} name="number" />
+      {() => (
+        <Form className="mx-auto bg-slate-800 p-8 rounded-2xl shadow-lg max-w-md w-full text-white space-y-6">
+          <h2 className="text-2xl font-bold text-cyan-400 text-center">
+            Add Contact
+          </h2>
+
+          {/* Name Field */}
+          <div className="space-y-1">
+            <label htmlFor="name" className="block font-semibold">
+              Name
+            </label>
+            <Field
+              name="name"
+              type="text"
+              id="name"
+              placeholder="Murk Zuckerberg"
+              className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white placeholder-slate-400"
+            />
             <ErrorMessage
-              className={css.error}
-              name="number"
+              name="name"
               component="span"
+              className="text-red-400 text-sm"
             />
           </div>
 
-          <button className={css.button} type="submit">
-            Add contact
+          {/* Number Field */}
+          <div className="space-y-1">
+            <label htmlFor="number" className="block font-semibold">
+              Number
+            </label>
+            <Field
+              name="number"
+              type="text"
+              id="number"
+              placeholder="+38 050 123 45 67"
+              className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white placeholder-slate-400"
+            />
+            <ErrorMessage
+              name="number"
+              component="span"
+              className="text-red-400 text-sm"
+            />
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full bg-cyan-500 hover:bg-cyan-600 text-slate-900 font-bold py-2 px-4 rounded-lg transition duration-300 shadow-md"
+          >
+            Add Contact
           </button>
         </Form>
       )}
