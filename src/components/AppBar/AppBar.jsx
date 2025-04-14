@@ -15,7 +15,7 @@ export default function AppBar() {
       </div>
 
       {/* User/Auth section */}
-      <div className="hidden md:flex items-center space-x-4">
+      <div className="md:flex items-center space-x-4">
         {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </div>
     </header>
