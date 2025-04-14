@@ -15,7 +15,7 @@ export default function HomePage() {
             securely, and each user has access only to their own contacts.
           </p>
           <a
-            href="https://connections-api.goit.global/"
+            href="https://connections-api.goit.global/docs"
             className="text-cyan-400 underline hover:text-cyan-300 transition"
             target="_blank"
             rel="noopener noreferrer"
