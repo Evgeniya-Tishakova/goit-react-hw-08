@@ -68,7 +68,7 @@ export default function RegistrationForm() {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          <Form autoComplete="off" className="space-y-6">
+          <Form autoComplete="off" noValidate className="space-y-6">
             {/* Name */}
             <div>
               <label
