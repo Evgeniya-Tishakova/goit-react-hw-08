@@ -1,12 +1,18 @@
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field } from "formik";
+import { useNavigate } from "react-router-dom";
 import { register } from "../../redux/auth/operations";
 
 export default function RegistrationForm() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (values, actions) => {
-    dispatch(register(values));
+    dispatch(register(values))
+      .unwrap()
+      .then(() => {
+        navigate("/contacts");
+      });
     actions.resetForm();
   };
 

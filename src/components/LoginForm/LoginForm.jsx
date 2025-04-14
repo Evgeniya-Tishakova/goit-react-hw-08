@@ -5,13 +5,13 @@ import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
-  const naigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = (values, actions) => {
     dispatch(logIn(values))
       .unwrap()
       .then(() => {
-        naigate("/contacts");
+        navigate("/contacts");
       })
       .catch();
     actions.resetForm();
